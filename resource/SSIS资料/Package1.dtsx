@@ -1,0 +1,1402 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/3/2019 11:47:47 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SHALL940"
+  DTS:CreatorName="PERKINELMERNET\wangj01052"
+  DTS:DTSID="{491B5E20-1581-453A-990E-50B0B3E681C2}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="2052"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{ACA49C12-C36D-47CB-9B81-5F9FE2E88CB1}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.56.1.test.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{DBB4016A-F20E-4D40-9F65-DFEE08E3E32F}"
+      DTS:ObjectName="192.168.56.1.test.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.56.1;User ID=sa;Initial Catalog=test;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJZLIxWpUF0KEtWq85YSxFAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAADH33vD0jRL/GzOzT2Q1tvVAAAAAASAAACgAAAAEAAAAPb8yLGac/vBS/N57t58h1YYAAAAmhlBehCxDS4rVs4203FTVanN2DvMR9yFFAAAAFm5Z/I3nv5H8csMBpvlxUkoPkvN</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[192.168.56.101.test.sa]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{1D1B569C-7A42-4F79-97C5-C2257F016D53}"
+      DTS:ObjectName="192.168.56.101.test.sa">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=192.168.56.101;User ID=sa;Initial Catalog=test;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAJZLIxWpUF0KEtWq85YSxFAAAAAAIAAAARABUAFMAAAADZgAAwAAAABAAAAD1wKLbNpit3kDsUjYbjJ1KAAAAAASAAACgAAAAEAAAAGhJ1x/iVAhigPEjE947tY8YAAAAKvyVKno78nzh9X/5U02GyQmS7ac3HhdzFAAAAJ0HMDa51wpzR+Y9D6PaKy1xsq9H</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\数据流任务"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="数据流任务"
+      DTS:DTSID="{BE1A77C5-40EC-4961-AC0B-6E318AA46DE3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="数据流任务"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\数据流任务\OLE DB 命令"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB 命令;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;2"
+              description="对数据流中的每个行运行 SQL 语句。例如，对 &quot;new employees&quot; 表中的每个行调用 &quot;new employee setup&quot; 存储过程。注意: 对大型数据流中的每个行运行 SQL 语句可能需要花费很长时间。"
+              localeId="1033"
+              name="OLE DB 命令"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="命令超时前等待的时间(秒)。值为 0，表示无限期等待。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="要执行的 SQL 命令。"
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">delete from test where (name =? or name is null)</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定当数据源中没有代码页信息时使用的列代码页。"
+                  name="DefaultCodePage">936</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\数据流任务\OLE DB 命令.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[192.168.56.101.test.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[192.168.56.101.test.sa]"
+                  description="指定用于访问数据库的 OLE DB 运行时连接。"
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\数据流任务\OLE DB 命令.Inputs[OLE DB 命令输入]"
+                  errorOrTruncationOperation="命令执行"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB 命令输入">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\数据流任务\OLE DB 命令.Inputs[OLE DB 命令输入].Columns[name]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\数据流任务\OLE DB 命令.Inputs[OLE DB 命令输入].ExternalColumns[Param_0]"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\数据流任务\OLE DB 命令.Inputs[OLE DB 命令输入].ExternalColumns[Param_0]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="参数信息。匹配 OLE DB 的 DBPARAMFLAGSENUM 值。"
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\OLE DB 命令.Outputs[OLE DB 命令输出]"
+                  exclusionGroup="1"
+                  name="OLE DB 命令输出"
+                  synchronousInputId="Package\数据流任务\OLE DB 命令.Inputs[OLE DB 命令输入]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\数据流任务\OLE DB 命令.Outputs[OLE DB 命令错误输出]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 命令错误输出"
+                  synchronousInputId="Package\数据流任务\OLE DB 命令.Inputs[OLE DB 命令输入]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 命令.Outputs[OLE DB 命令错误输出].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 命令.Outputs[OLE DB 命令错误输出].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 命令.Outputs[OLE DB 命令错误输出].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 命令.Outputs[OLE DB 命令错误输出].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\数据流任务\OLE DB 源"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 源;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 源"
+              name="OLE DB 源"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="命令超时前等待的时间(秒)。值为 0，表示无限期等待。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="指定用于打开行集的数据库对象的名称。"
+                  name="OpenRowset">[dbo].[test]</property>
+                <property
+                  dataType="System.String"
+                  description="指定包含用于打开行集的数据库对象名的变量。"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="要执行的 SQL 命令。"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="包含要执行的 SQL 命令的变量。"
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="指定当数据源中没有代码页信息时使用的列代码页。"
+                  name="DefaultCodePage">936</property>
+                <property
+                  dataType="System.Boolean"
+                  description="描述字符数据时，强制使用 DefaultCodePage 属性值。"
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定用于访问数据库的模式。"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 命令中的参数与变量之间的映射。"
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\数据流任务\OLE DB 源.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[192.168.56.1.test.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[192.168.56.1.test.sa]"
+                  description="指定用于访问数据库的 OLE DB 运行时连接。"
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出]"
+                  name="OLE DB 源输出">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[name]"
+                      codePage="936"
+                      dataType="str"
+                      errorOrTruncationOperation="转换"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].ExternalColumns[name]"
+                      length="50"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[text]"
+                      dataType="nText"
+                      errorOrTruncationOperation="转换"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].ExternalColumns[text]"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[text]"
+                      name="text"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].ExternalColumns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].ExternalColumns[text]"
+                      dataType="nText"
+                      name="text" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出]"
+                  isErrorOut="true"
+                  name="OLE DB 源错误输出">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[text]"
+                      dataType="nText"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[text]"
+                      name="text" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源错误输出].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\数据流任务\OLE DB 源 1"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB 源;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;7"
+              description="OLE DB 源"
+              name="OLE DB 源 1"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="命令超时前等待的时间(秒)。值为 0，表示无限期等待。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="指定用于打开行集的数据库对象的名称。"
+                  name="OpenRowset">[dbo].[test]</property>
+                <property
+                  dataType="System.String"
+                  description="指定包含用于打开行集的数据库对象名的变量。"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="要执行的 SQL 命令。"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="包含要执行的 SQL 命令的变量。"
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="指定当数据源中没有代码页信息时使用的列代码页。"
+                  name="DefaultCodePage">936</property>
+                <property
+                  dataType="System.Boolean"
+                  description="描述字符数据时，强制使用 DefaultCodePage 属性值。"
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定用于访问数据库的模式。"
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="SQL 命令中的参数与变量之间的映射。"
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\数据流任务\OLE DB 源 1.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[192.168.56.101.test.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[192.168.56.101.test.sa]"
+                  description="指定用于访问数据库的 OLE DB 运行时连接。"
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出]"
+                  name="OLE DB 源输出">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[name]"
+                      codePage="936"
+                      dataType="str"
+                      errorOrTruncationOperation="转换"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].ExternalColumns[name]"
+                      length="50"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[text]"
+                      dataType="nText"
+                      errorOrTruncationOperation="转换"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].ExternalColumns[text]"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[text]"
+                      name="text"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].ExternalColumns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].ExternalColumns[text]"
+                      dataType="nText"
+                      name="text" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出]"
+                  isErrorOut="true"
+                  name="OLE DB 源错误输出">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[name]"
+                      name="name" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[text]"
+                      dataType="nText"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[text]"
+                      name="text" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源错误输出].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\数据流任务\OLE DB 目标"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB 目标;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;4"
+              description="OLE DB 目标"
+              name="OLE DB 目标"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="命令超时前等待的时间(秒)。值为 0，表示无限期等待。"
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="指定用于打开行集的数据库对象的名称。"
+                  name="OpenRowset">[dbo].[test]</property>
+                <property
+                  dataType="System.String"
+                  description="指定包含用于打开行集的数据库对象名的变量。"
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="要执行的 SQL 命令。"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="指定当数据源中没有代码页信息时使用的列代码页。"
+                  name="DefaultCodePage">936</property>
+                <property
+                  dataType="System.Boolean"
+                  description="描述字符数据时，强制使用 DefaultCodePage 属性值。"
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定用于访问数据库的模式。"
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="指示是否将为标识列提供的值复制到目标。如果设置为 False，则将在目标中为标识列自动生成值。仅当启用了快速加载时适用。"
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="指示对于包含 Null 值的列是否将 Null 值插入目标中。如果为 False，则对于包含 Null 值的列会将其默认值插入目标中。仅当启用了快速加载时适用。"
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="指定将用于快速加载的选项。仅当启用了快速加载时适用。"
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定在插入数据期间何时发出提交命令。如果值为 0，则指定在数据插入结束时发出一个提交命令。仅当启用了快速加载时适用。"
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\数据流任务\OLE DB 目标.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[192.168.56.1.test.sa]"
+                  connectionManagerRefId="Package.ConnectionManagers[192.168.56.1.test.sa]"
+                  description="指定用于访问数据库的 OLE DB 运行时连接。"
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入]"
+                  errorOrTruncationOperation="插入"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB 目标输入">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入].Columns[name (1)]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name (1)"
+                      externalMetadataColumnId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入].ExternalColumns[name]"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name (1)]" />
+                    <inputColumn
+                      refId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入].Columns[text (1)]"
+                      cachedDataType="nText"
+                      cachedName="text (1)"
+                      externalMetadataColumnId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入].ExternalColumns[text]"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text (1)]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入].ExternalColumns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入].ExternalColumns[text]"
+                      dataType="nText"
+                      name="text" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\OLE DB 目标.Outputs[OLE DB 目标错误输出]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB 目标错误输出"
+                  synchronousInputId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 目标.Outputs[OLE DB 目标错误输出].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 目标.Outputs[OLE DB 目标错误输出].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\数据流任务\OLE DB 目标.Outputs[OLE DB 目标错误输出].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\OLE DB 目标.Outputs[OLE DB 目标错误输出].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\数据流任务\合并联接"
+              componentClassID="Microsoft.MergeJoin"
+              contactInfo="合并联接;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;1"
+              description="通过使用 FULL、LEFT 或 INNER 联接，将两个已排序的数据流合并为一个数据流。建议当可在数据流的来源中对数据流进行排序时使用此转换。"
+              name="合并联接"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="指定要执行的联接类型。"
+                  name="JoinType"
+                  typeConverter="JoinType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定排序键中的列数。"
+                  name="NumKeyColumns">1</property>
+                <property
+                  dataType="System.Boolean"
+                  description="指示是否将 Null 值视为相等的值。"
+                  name="TreatNullsAsEqual">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="指示在阻塞之前每个输入所请求的最大缓冲区数。"
+                  name="MaxBuffersPerInput">5</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\数据流任务\合并联接.Inputs[合并联接左侧输入]"
+                  hasSideEffects="true"
+                  name="合并联接左侧输入">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\数据流任务\合并联接.Inputs[合并联接左侧输入].Columns[name]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\数据流任务\排序.Outputs[对输出进行排序].Columns[name]" />
+                    <inputColumn
+                      refId="Package\数据流任务\合并联接.Inputs[合并联接左侧输入].Columns[text]"
+                      cachedDataType="nText"
+                      cachedName="text"
+                      lineageId="Package\数据流任务\排序.Outputs[对输出进行排序].Columns[text]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\数据流任务\合并联接.Inputs[合并联接右侧输入]"
+                  hasSideEffects="true"
+                  name="合并联接右侧输入">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\数据流任务\合并联接.Inputs[合并联接右侧输入].Columns[name]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\数据流任务\排序 1.Outputs[对输出进行排序].Columns[name]" />
+                    <inputColumn
+                      refId="Package\数据流任务\合并联接.Inputs[合并联接右侧输入].Columns[text]"
+                      cachedDataType="nText"
+                      cachedName="text"
+                      lineageId="Package\数据流任务\排序 1.Outputs[对输出进行排序].Columns[text]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\合并联接.Outputs[合并联接输出]"
+                  isSorted="true"
+                  name="合并联接输出">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name]"
+                      name="name"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="与此输出列相关联的输入列"
+                          name="InputColumnID">#{Package\数据流任务\合并联接.Inputs[合并联接左侧输入].Columns[name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text]"
+                      dataType="nText"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text]"
+                      name="text">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="与此输出列相关联的输入列"
+                          name="InputColumnID">#{Package\数据流任务\合并联接.Inputs[合并联接左侧输入].Columns[text]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name (1)]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name (1)]"
+                      name="name (1)">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="与此输出列相关联的输入列"
+                          name="InputColumnID">#{Package\数据流任务\合并联接.Inputs[合并联接右侧输入].Columns[name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text (1)]"
+                      dataType="nText"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text (1)]"
+                      name="text (1)">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="与此输出列相关联的输入列"
+                          name="InputColumnID">#{Package\数据流任务\合并联接.Inputs[合并联接右侧输入].Columns[text]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\数据流任务\排序"
+              componentClassID="Microsoft.Sort"
+              contactInfo="排序;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;1"
+              description="当不能在输入数据的来源中对其进行排序时，按升序或降序对输入数据进行排序。例如，先按 &quot;customer id&quot; 对销售数据进行排序，再将该数据写入到一个平面文件，然后将此文件交付给另一个部门。注意: 建议不要对大型数据流使用此转换。"
+              name="排序"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="指示排序转换是否删除排序值重复的行。"
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定要用于排序的最大线程数。"
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\数据流任务\排序.Inputs[对输入进行排序]"
+                  name="对输入进行排序">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\数据流任务\排序.Inputs[对输入进行排序].Columns[name]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="指定字符数据的比较选项。"
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="指定列的排序顺序。"
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\数据流任务\排序.Inputs[对输入进行排序].Columns[text]"
+                      cachedDataType="nText"
+                      cachedName="text"
+                      lineageId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[text]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="指定字符数据的比较选项。"
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="指定列的排序顺序。"
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\排序.Outputs[对输出进行排序]"
+                  isSorted="true"
+                  name="对输出进行排序">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\排序.Outputs[对输出进行排序].Columns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\数据流任务\排序.Outputs[对输出进行排序].Columns[name]"
+                      name="name"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="指定与此输出列关联的输入列的沿袭标识符。"
+                          name="SortColumnId">#{Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\数据流任务\排序.Outputs[对输出进行排序].Columns[text]"
+                      dataType="nText"
+                      lineageId="Package\数据流任务\排序.Outputs[对输出进行排序].Columns[text]"
+                      name="text">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="指定与此输出列关联的输入列的沿袭标识符。"
+                          name="SortColumnId">#{Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出].Columns[text]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\数据流任务\排序 1"
+              componentClassID="Microsoft.Sort"
+              contactInfo="排序;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;1"
+              description="当不能在输入数据的来源中对其进行排序时，按升序或降序对输入数据进行排序。例如，先按 &quot;customer id&quot; 对销售数据进行排序，再将该数据写入到一个平面文件，然后将此文件交付给另一个部门。注意: 建议不要对大型数据流使用此转换。"
+              name="排序 1"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="指示排序转换是否删除排序值重复的行。"
+                  name="EliminateDuplicates">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="指定要用于排序的最大线程数。"
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\数据流任务\排序 1.Inputs[对输入进行排序]"
+                  name="对输入进行排序">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\数据流任务\排序 1.Inputs[对输入进行排序].Columns[name]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="指定字符数据的比较选项。"
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="指定列的排序顺序。"
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\数据流任务\排序 1.Inputs[对输入进行排序].Columns[text]"
+                      cachedDataType="nText"
+                      cachedName="text"
+                      lineageId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[text]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="指定字符数据的比较选项。"
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="指定列的排序顺序。"
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\排序 1.Outputs[对输出进行排序]"
+                  isSorted="true"
+                  name="对输出进行排序">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\排序 1.Outputs[对输出进行排序].Columns[name]"
+                      codePage="936"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\数据流任务\排序 1.Outputs[对输出进行排序].Columns[name]"
+                      name="name"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="指定与此输出列关联的输入列的沿袭标识符。"
+                          name="SortColumnId">#{Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[name]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\数据流任务\排序 1.Outputs[对输出进行排序].Columns[text]"
+                      dataType="nText"
+                      lineageId="Package\数据流任务\排序 1.Outputs[对输出进行排序].Columns[text]"
+                      name="text">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="指定与此输出列关联的输入列的沿袭标识符。"
+                          name="SortColumnId">#{Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出].Columns[text]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\数据流任务\有条件拆分"
+              componentClassID="Microsoft.ConditionalSplit"
+              contactInfo="有条件拆分;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; 保留所有权利; http://www.microsoft.com/sql/support;0"
+              description="根据数据内容将数据行路由到不同的输出。使用条件(SSIS 表达式)指定要路由的行。例如，将需要清理的记录与准备加载的记录分隔开，或仅路由记录的某个子集。"
+              name="有条件拆分"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入]"
+                  description="有条件拆分转换的输入"
+                  name="有条件拆分输入">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入].Columns[name]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name]" />
+                    <inputColumn
+                      refId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入].Columns[text]"
+                      cachedDataType="nText"
+                      cachedName="text"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text]" />
+                    <inputColumn
+                      refId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入].Columns[name (1)]"
+                      cachedCodepage="936"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="name (1)"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name (1)]" />
+                    <inputColumn
+                      refId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入].Columns[text (1)]"
+                      cachedDataType="nText"
+                      cachedName="text (1)"
+                      lineageId="Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text (1)]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\数据流任务\有条件拆分.Outputs[new]"
+                  description="有条件拆分转换的输出 1"
+                  errorOrTruncationOperation="计算"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="new"
+                  synchronousInputId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="指定表达式。此表达式版本使用沿袭标识符而不是列名。"
+                      name="Expression">[ISNULL](#{Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name]}) &amp;&amp; [ISNULL](#{Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="指定表达式的友好版本。此表达式版本使用列名。"
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL(name) &amp;&amp; ISNULL(text)</property>
+                    <property
+                      dataType="System.Int32"
+                      description="指定该条件在转换计算的条件列表中所处的位置。计算顺序是从最小值到最大值。"
+                      name="EvaluationOrder">0</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\数据流任务\有条件拆分.Outputs[delete]"
+                  description="有条件拆分转换的输出 2"
+                  errorOrTruncationOperation="计算"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="delete"
+                  synchronousInputId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入]"
+                  truncationRowDisposition="FailComponent">
+                  <properties>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="指定表达式。此表达式版本使用沿袭标识符而不是列名。"
+                      name="Expression">[ISNULL](#{Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[name (1)]}) &amp;&amp; [ISNULL](#{Package\数据流任务\合并联接.Outputs[合并联接输出].Columns[text (1)]})</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="指定表达式的友好版本。此表达式版本使用列名。"
+                      expressionType="Notify"
+                      name="FriendlyExpression">ISNULL([name (1)]) &amp;&amp; ISNULL([text (1)])</property>
+                    <property
+                      dataType="System.Int32"
+                      description="指定该条件在转换计算的条件列表中所处的位置。计算顺序是从最小值到最大值。"
+                      name="EvaluationOrder">1</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\数据流任务\有条件拆分.Outputs[有条件拆分默认输出]"
+                  description="有条件拆分转换的默认输出"
+                  exclusionGroup="1"
+                  name="有条件拆分默认输出"
+                  synchronousInputId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入]">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      name="IsDefaultOut">true</property>
+                  </properties>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\数据流任务\有条件拆分.Outputs[有条件拆分错误输出]"
+                  description="有条件拆分转换的错误输出"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="有条件拆分错误输出"
+                  synchronousInputId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\数据流任务\有条件拆分.Outputs[有条件拆分错误输出].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\有条件拆分.Outputs[有条件拆分错误输出].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\数据流任务\有条件拆分.Outputs[有条件拆分错误输出].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\数据流任务\有条件拆分.Outputs[有条件拆分错误输出].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\数据流任务.Paths[delete]"
+              endId="Package\数据流任务\OLE DB 命令.Inputs[OLE DB 命令输入]"
+              name="delete"
+              startId="Package\数据流任务\有条件拆分.Outputs[delete]" />
+            <path
+              refId="Package\数据流任务.Paths[new]"
+              endId="Package\数据流任务\OLE DB 目标.Inputs[OLE DB 目标输入]"
+              name="new"
+              startId="Package\数据流任务\有条件拆分.Outputs[new]" />
+            <path
+              refId="Package\数据流任务.Paths[OLE DB 源输出]"
+              endId="Package\数据流任务\排序.Inputs[对输入进行排序]"
+              name="OLE DB 源输出"
+              startId="Package\数据流任务\OLE DB 源.Outputs[OLE DB 源输出]" />
+            <path
+              refId="Package\数据流任务.Paths[OLE DB 源输出1]"
+              endId="Package\数据流任务\排序 1.Inputs[对输入进行排序]"
+              name="OLE DB 源输出"
+              startId="Package\数据流任务\OLE DB 源 1.Outputs[OLE DB 源输出]" />
+            <path
+              refId="Package\数据流任务.Paths[合并联接输出]"
+              endId="Package\数据流任务\有条件拆分.Inputs[有条件拆分输入]"
+              name="合并联接输出"
+              startId="Package\数据流任务\合并联接.Outputs[合并联接输出]" />
+            <path
+              refId="Package\数据流任务.Paths[对输出进行排序]"
+              endId="Package\数据流任务\合并联接.Inputs[合并联接左侧输入]"
+              name="对输出进行排序"
+              startId="Package\数据流任务\排序.Outputs[对输出进行排序]" />
+            <path
+              refId="Package\数据流任务.Paths[对输出进行排序1]"
+              endId="Package\数据流任务\合并联接.Inputs[合并联接右侧输入]"
+              name="对输出进行排序"
+              startId="Package\数据流任务\排序 1.Outputs[对输出进行排序]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--此 CDATA 部分包含包的布局信息。该部分包括(x,y)坐标、宽度和高度之类的信息。-->
+<!--如果您手动编辑此部分并且出错，则可以删除此部分。 -->
+<!--该包仍将能够正常加载，但以前的布局信息将丢失，并且设计器将自动在设计图面上重新排列这些元素。-->
+<Objects
+  Version="8">
+  <!--下面的每个节点都将包含不会影响运行时行为的属性。-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="134,42"
+          Id="Package\数据流任务"
+          TopLeft="317,214" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\数据流任务">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="133,42"
+          Id="Package\数据流任务\OLE DB 源"
+          TopLeft="270,64" />
+        <NodeLayout
+          Size="142,42"
+          Id="Package\数据流任务\OLE DB 源 1"
+          TopLeft="505,59" />
+        <NodeLayout
+          Size="101,42"
+          Id="Package\数据流任务\排序"
+          TopLeft="275,179" />
+        <EdgeLayout
+          Id="Package\数据流任务.Paths[OLE DB 源输出]"
+          TopLeft="336.5,106">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-11,73"
+              Start="0,0"
+              End="-11,65.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.5"
+                    Point2="0,36.5"
+                    Point3="-4,36.5" />
+                  <mssgle:LineSegment
+                    End="-7,36.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-7,36.5"
+                    Point2="-11,36.5"
+                    Point3="-11,40.5" />
+                  <mssgle:LineSegment
+                    End="-11,65.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="110,42"
+          Id="Package\数据流任务\排序 1"
+          TopLeft="517,204" />
+        <EdgeLayout
+          Id="Package\数据流任务.Paths[OLE DB 源输出1]"
+          TopLeft="574,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,103"
+              Start="0,0"
+              End="0,95.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,95.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="123,42"
+          Id="Package\数据流任务\合并联接"
+          TopLeft="423,304" />
+        <EdgeLayout
+          Id="Package\数据流任务.Paths[对输出进行排序]"
+          TopLeft="325.5,221">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="139.833333333333,83"
+              Start="0,0"
+              End="139.833333333333,75.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.1605136436597" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,45.1605136436597"
+                    Point2="0,49.1605136436597"
+                    Point3="4,49.1605136436597" />
+                  <mssgle:LineSegment
+                    End="135.833333333333,49.1605136436597" />
+                  <mssgle:CubicBezierSegment
+                    Point1="135.833333333333,49.1605136436597"
+                    Point2="139.833333333333,49.1605136436597"
+                    Point3="139.833333333333,53.1605136436597" />
+                  <mssgle:LineSegment
+                    End="139.833333333333,75.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\数据流任务.Paths[对输出进行排序1]"
+          TopLeft="572,246">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-68.3333333333334,58"
+              Start="0,0"
+              End="-68.3333333333334,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.3531300160514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,30.3531300160514"
+                    Point2="0,34.3531300160514"
+                    Point3="-4,34.3531300160514" />
+                  <mssgle:LineSegment
+                    End="-64.3333333333334,34.3531300160514" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-64.3333333333334,34.3531300160514"
+                    Point2="-68.3333333333334,34.3531300160514"
+                    Point3="-68.3333333333334,38.3531300160514" />
+                  <mssgle:LineSegment
+                    End="-68.3333333333334,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="134,42"
+          Id="Package\数据流任务\有条件拆分"
+          TopLeft="430,404" />
+        <EdgeLayout
+          Id="Package\数据流任务.Paths[合并联接输出]"
+          TopLeft="484.5,346">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="12.5,58"
+              Start="0,0"
+              End="12.5,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="4,29" />
+                  <mssgle:LineSegment
+                    End="8.5,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="8.5,29"
+                    Point2="12.5,29"
+                    Point3="12.5,33" />
+                  <mssgle:LineSegment
+                    End="12.5,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="144,42"
+          Id="Package\数据流任务\OLE DB 命令"
+          TopLeft="673,481" />
+        <NodeLayout
+          Size="144,42"
+          Id="Package\数据流任务\OLE DB 目标"
+          TopLeft="264,483" />
+        <EdgeLayout
+          Id="Package\数据流任务.Paths[new]"
+          TopLeft="497,446">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-161,37"
+              Start="0,0"
+              End="-161,29.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,14.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,14.5"
+                    Point2="0,18.5"
+                    Point3="-4,18.5" />
+                  <mssgle:LineSegment
+                    End="-157,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-157,18.5"
+                    Point2="-161,18.5"
+                    Point3="-161,22.5" />
+                  <mssgle:LineSegment
+                    End="-161,29.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-90.2256640625,23.5,19.451328125,7.732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\数据流任务.Paths[delete]"
+          TopLeft="518,446">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="227,35"
+              Start="0,0"
+              End="227,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,10.2477876106195" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,10.2477876106195"
+                    Point2="0,14.2477876106195"
+                    Point3="4,14.2477876106195" />
+                  <mssgle:LineSegment
+                    End="223,14.2477876106195" />
+                  <mssgle:CubicBezierSegment
+                    Point1="223,14.2477876106195"
+                    Point2="227,14.2477876106195"
+                    Point3="227,18.2477876106195" />
+                  <mssgle:LineSegment
+                    End="227,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="99.30404296875,19.2477876106195,28.3919140625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\数据流任务\OLE DB 源">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\数据流任务\OLE DB 源 1">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\数据流任务\OLE DB 目标">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
